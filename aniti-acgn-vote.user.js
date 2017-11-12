@@ -3,25 +3,34 @@
 // @version      1.0
 // @description  easy to vote
 // @author       Juise
+// @contributor  TDC
 // @match        https://acgn-stock.com/*
 // @grant        none
 // ==/UserScript==
 
 function addPluginMenu() {
-  //      <li class="nav-item">
-  //        <a class="nav-link btn btn-primary" href="#" id="open-folder"">開啟</a>
-  //      </li>
   const pluginMenu = $(`
+        <li class="nav-item">
+          <a class="nav-link btn btn-primary" href="#" id="one-click">一鍵投票</a>
+        </li>
+        <li> <p>&nbsp</p></li>
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="#" id="block-vote">投票</a>
         </li>
+        <li> <p>&nbsp</p></li>
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="#" id="text-Return">複製</a>
         </li>
       `).insertAfter($(".nav-item").last());
-  pluginMenu.find("#open-folder").on("click", openfolder);
+  pluginMenu.find("#one-click").on("click", oneClick);
   pluginMenu.find("#block-vote").on("click", blockVote);
   pluginMenu.find("#text-Return").on("click", textReturn);
+}
+
+function oneClick(){
+	blockVote();
+	setTimeout(function(){
+        textReturn('one-click');}, 3000);
 }
 
 function openfolder() {
@@ -43,10 +52,9 @@ function blockVote() {
   $("button.btn.btn-primary.btn-sm:eq(0)").click();
 }
 
-function textReturn(){
-  var subbutton = document.getElementById('text-Return');
-  var content =  '<div>' + document.getElementsByClassName("logData")[0].innerHTML.replace(/\n/g, '').replace(/ /gi, '') + '</div>';
-  var text = $(content).text();
+function textReturn(from){
+  var subbutton = document.getElementById(from);
+  var text =  document.getElementsByClassName("logData")[0].innerText;
   var copyThis = text;
   new Clipboard('.btn', {
     text: function(trigger) {
@@ -55,9 +63,12 @@ function textReturn(){
   });
   subbutton.innerText = "已複製";
   setTimeout(function(){
-    //do what you need here
+		if (from == 'one-click'){
+			subbutton.innerText = "一鍵投票";
+			return;
+		}
     subbutton.innerText = "複製";
-  }, 5000);
+  }, 3000);
 
   //alert('已複製到剪貼簿');
 }
