@@ -55,11 +55,11 @@ function blockVote() {
 function textReturn(from){
   var uname = document.getElementsByClassName("dropdown-toggle")[0].innerText.split(' ')[1];
   var subbutton = document.getElementById(from);
-  var i = 0;
-  while( i<10 ) {
+  //var i = 0;
+  while(1){//i<10 ) {
     var text = document.getElementsByClassName("logData")[0].innerText;
     var suname = text.split(' ')[3];
-    i++;
+    //i++;
     if (uname == suname) {
       var copyThis = text;
       new Clipboard('.btn', {
@@ -72,22 +72,12 @@ function textReturn(from){
         if (from == 'one-click'){
           subbutton.innerText = "一鍵投票";
           return;
-        }
+            }
         subbutton.innerText = "複製";
       }, 3000);
-
       break;
-    };
-  };
-
-  subbutton.innerText = "已複製";
-  setTimeout(function(){
-    if (from == 'one-click'){
-      subbutton.innerText = "一鍵投票";
-      return;
     }
-    subbutton.innerText = "複製";
-  }, 3000);
+  }
 
   //alert('已複製到剪貼簿');
 }
