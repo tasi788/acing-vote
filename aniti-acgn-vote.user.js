@@ -75,9 +75,19 @@ function textReturn(from){
         }
         subbutton.innerText = "複製";
       }, 3000);
+
       break;
     };
   };
+
+  subbutton.innerText = "已複製";
+  setTimeout(function(){
+    if (from == 'one-click'){
+      subbutton.innerText = "一鍵投票";
+      return;
+    }
+    subbutton.innerText = "複製";
+  }, 3000);
 
   //alert('已複製到剪貼簿');
 }
