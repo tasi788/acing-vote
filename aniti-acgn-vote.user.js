@@ -45,8 +45,8 @@ function blockVote() {
 
 function textReturn(){
   var subbutton = document.getElementById('text-Return');
-  var content =  '<div>' + document.getElementsByClassName("logData")[0].innerHTML.replace(/\n/g, '').replace(/ /gi, '') + '</div>';
-  var text = $(content).text();
+  var text = document.getElementsByClassName("logData")[0].innerText;
+  var suname = text.split(' ')[3];
   var copyThis = text;
   new Clipboard('.btn', {
     text: function(trigger) {
@@ -57,7 +57,7 @@ function textReturn(){
   setTimeout(function(){
     //do what you need here
     subbutton.innerText = "複製";
-  }, 5000);
+  }, 3000);
 
   //alert('已複製到剪貼簿');
 }
