@@ -8,16 +8,18 @@
 // ==/UserScript==
 
 function addPluginMenu() {
-  //      <li class="nav-item">
-  //        <a class="nav-link btn btn-primary" href="#" id="open-folder"">開啟</a>
-  //      </li>
   const pluginMenu = $(`
-        <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#" id="block-vote">投票</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn btn-primary" href="#" id="text-Return">複製</a>
-        </li>
+    <li class="nav-item">
+      <a class="nav-link btn btn-danger" href="#" id=#">(尚未開放)一鍵投票</a>
+    </li>
+    <li> <p>&nbsp</p></li>
+    <li class="nav-item">
+      <a class="nav-link btn btn-primary" href="#" id="block-vote">投票</a>
+    </li>
+    <li> <p>&nbsp</p></li>
+    <li class="nav-item">
+      <a class="nav-link btn btn-primary" href="#" id="text-Return">複製</a>
+    </li>
       `).insertAfter($(".nav-item").last());
   pluginMenu.find("#open-folder").on("click", openfolder);
   pluginMenu.find("#block-vote").on("click", blockVote);
